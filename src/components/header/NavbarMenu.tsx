@@ -15,7 +15,7 @@ const NavList: React.FC<NavListProps> = ({ items }) => (
 
 export const NavbarMenu = () => {
   return (
-    <div className="bg-black p-6 w-full">
+    <div className="z-10 p-6 w-full h-[10%]">
       <nav className="flex justify-between text-white text-lg font-light">
         <div className="left">
           <NavList items={["Movies", "Series", "Documentaries"]} />

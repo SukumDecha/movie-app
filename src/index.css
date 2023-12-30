@@ -10,6 +10,21 @@
 
 @layer components {
   .btn {
-    @apply transition ease-in-out bg-darkpurple px-20 py-3 text-white text-sm font-light rounded-xl hover:bg-lightpurple hover:-translate-y-1 cursor-pointer;
+    @apply transition ease-in-out duration-100 bg-darkpurple px-20 py-3 text-white text-sm font-light rounded-xl hover:bg-lightpurple hover:-translate-y-3 cursor-pointer;
+  }
+
+  .favourite {
+    border-radius: 14px;
+    border: 1px solid #fff;
+
+    background: linear-gradient(
+      99deg,
+      #fff 3.36%,
+      rgba(255, 255, 255, 0) 238.16%
+    );
+
+    backdrop-filter: blur(10px);
+
+    @apply transition ease-in-out duration-100 hover:bg-lightpurple hover:-translate-y-3 cursor-pointer;
   }
 }

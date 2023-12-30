@@ -10,22 +10,32 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 
 interface SidebarItemProps {
   icon: ReactNode;
   text: string;
+  path?: string;
 }
-
-const SidebarItem: React.FC<SidebarItemProps> = ({ icon, text }) => (
-  <div className="flex items-center">
-    {icon}
-    <span className="px-4">{text}</span>
-  </div>
-);
 
 interface SidebarListProps {
   items: SidebarItemProps[];
 }
+
+const SidebarItem: React.FC<SidebarItemProps> = ({ icon, text, path }) => {
+  const location = useLocation();
+  const isActive = path ? location.pathname === path : false;
+  const textColor = isActive && "text-white font-semibold";
+
+  return (
+    <div
+      className={`flex items-center hover:cursor-pointer hover:text-primary ${textColor}`}
+    >
+      {icon}
+      <span className="px-4">{text}</span>
+    </div>
+  );
+};
 
 const SidebarList: React.FC<SidebarListProps> = ({ items }) => (
   <ul className="flex flex-col gap-6 text-secondary text-normal font-thin">
@@ -38,15 +48,34 @@ const SidebarList: React.FC<SidebarListProps> = ({ items }) => (
 );
 
 const sidebarItemsA: SidebarItemProps[] = [
-  { icon: <FontAwesomeIcon icon={faFilm} />, text: "Home" },
-  { icon: <FontAwesomeIcon icon={faHeart} />, text: "Favourites" },
-  { icon: <FontAwesomeIcon icon={faArrowTrendUp} />, text: "Trending" },
-  { icon: <FontAwesomeIcon icon={faFilm} />, text: "Coming Soon" },
+  { icon: <FontAwesomeIcon icon={faFilm} />, text: "Home", path: "/" },
+  {
+    icon: <FontAwesomeIcon icon={faHeart} />,
+    text: "Favourites",
+    path: "/favourites",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faArrowTrendUp} />,
+    text: "Trending",
+    path: "trending",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faFilm} />,
+    text: "Coming Soon",
+  },
 ];
 
 const sidebarItemsB: SidebarItemProps[] = [
-  { icon: <FontAwesomeIcon icon={faPeopleGroup} />, text: "Community" },
-  { icon: <FontAwesomeIcon icon={faComment} />, text: "Social" },
+  {
+    icon: <FontAwesomeIcon icon={faPeopleGroup} />,
+    text: "Community",
+    path: "/community",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faComment} />,
+    text: "Social",
+    path: "/social",
+  },
 ];
 
 const sidebarItemsC: SidebarItemProps[] = [

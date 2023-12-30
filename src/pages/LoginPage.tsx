@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 import { useSetRecoilState } from "recoil";
-import { authState } from "../utils/atom";
+import { authState } from "../utils/state/authState";
 
 export const LoginPage = () => {
   const setAuth = useSetRecoilState(authState);
