@@ -6,9 +6,11 @@ import { MovieSection } from "../components/movie/MovieSection";
 export const HomePage = () => {
   console.log(location);
   return (
-    <div className="flex w-full border-1 border-red-500">
-      <SidebarMenu />
-      <div className="container flex flex-col">
+    <div className="flex w-full h-[100vh] border-red-500">
+      <div className="w-1/5">
+        <SidebarMenu />
+      </div>
+      <div className="container flex flex-col w-4/5">
         <NavbarMenu />
         <HeroSection />
         <MovieSection title="Trending..." />

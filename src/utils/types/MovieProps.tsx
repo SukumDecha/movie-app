@@ -3,5 +3,5 @@ export default interface MovieProps {
   Year: number;
   Type: string;
   Poster: string;
-  imdbID: string;
+  imdbRating: string;
 }

@@ -7,7 +7,7 @@ export const LoginPage = () => {
   const setAuth = useSetRecoilState(authState);
 
   return (
-    <div className="bg-login bg-cover bg-center h-[100vh]">
+    <div className="bg-login bg-cover bg-center w-full h-[100vh]">
       <div className="flex justify-center items-center bg-gray-500 bg-opacity-50 h-[100vh]">
         <div className="flex flex-col items-center">
           <div className="text-white text-lg font-semibold">

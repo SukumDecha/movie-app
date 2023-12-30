@@ -7,11 +7,11 @@ export const MovieItem = ({
   Year,
   Type,
   Poster,
-  imdbID,
+  imdbRating,
 }: MovieProps) => {
   return (
-    <div className="w-[25%] h-[80%] ">
-      <div className="w-full h-[70%] relative">
+    <div className="w-[13rem] h-[20rem] flex-shrink-0 hover">
+      <div className="poster h-3/4 relative">
         <img
           className="w-full h-full object-cover rounded-t-xl"
           src={Poster}
@@ -22,12 +22,10 @@ export const MovieItem = ({
         </div>
       </div>
 
-      <div className="w-full h-[30%] bg-white text-sm font-black p-3 rounded-b-xl">
-        <div className="font-semibold mb-2">
-          {Title} - {Type}
-        </div>
+      <div className="h-1/4 bg-white text-sm font-black p-3 rounded-b-xl">
+        <div className="font-semibold mb-2">{Title}</div>
         <span className="font-normal">
-          {Year} | {imdbID}
+          {Year} | {imdbRating} | {Type}
         </span>
         <br />
       </div>

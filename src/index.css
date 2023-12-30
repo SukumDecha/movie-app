@@ -9,8 +9,11 @@
 }
 
 @layer components {
+  .hover {
+    @apply transition ease-in-out duration-100 hover:-translate-y-3 cursor-pointer;
+  }
   .btn {
-    @apply transition ease-in-out duration-100 bg-darkpurple px-20 py-3 text-white text-sm font-light rounded-xl hover:bg-lightpurple hover:-translate-y-3 cursor-pointer;
+    @apply bg-darkpurple px-20 py-3 text-white text-sm font-light rounded-xl hover:bg-lightpurple hover;
   }
 
   .favourite {
@@ -25,6 +28,18 @@
 
     backdrop-filter: blur(10px);
 
-    @apply transition ease-in-out duration-100 hover:bg-lightpurple hover:-translate-y-3 cursor-pointer;
+    @apply hover:bg-lightpurple hover;
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   }
 }

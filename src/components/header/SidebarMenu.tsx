@@ -85,7 +85,7 @@ const sidebarItemsC: SidebarItemProps[] = [
 
 export const SidebarMenu: React.FC = () => {
   return (
-    <div className="w-[25%] h-[100vh] bg-[#21201E] flex flex-col items-center">
+    <div className="h-full bg-[#21201E] flex flex-col items-center">
       <div className="text-white text-2xl font-semibold my-6">
         <FontAwesomeIcon icon={faMugHot} />
         <span className="px-4">WATCH</span>

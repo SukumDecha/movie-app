@@ -1,6 +1,6 @@
 import MovieProps from "../types/MovieProps";
 
-const apiKey2 = "92de39b3";
+// const apiKey2 = "92de39b3";
 const apiKey = "26b7e602";
 export const fetchByName = async (name: string): Promise<MovieProps> => {
   try {
@@ -26,45 +26,51 @@ export const fetchByName = async (name: string): Promise<MovieProps> => {
 };
 // ...
 
-export const fetchRandomMovies = async (): Promise<MovieProps[]> => {
-  try {
-    const key = getRandomText();
+export const fetchRandomMovies = async (
+  amount: number
+): Promise<MovieProps[]> => {
+  const movieList: MovieProps[] = [];
 
-    console.log("Search Key:", key);
-    const response = await fetch(
-      `http://www.omdbapi.com/?s=${encodeURIComponent(
-        key
-      )}&page=1&r=json&apikey=${apiKey}`
-    );
+  for (let i = 0; i < amount; i++) {
+    try {
+      let movie = await fetchByName(getRandomTitle());
+      while (movieList.some((m) => m.Title === movie.Title)) {
+        movie = await fetchByName(getRandomTitle());
+      }
 
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      movieList.push(movie);
+    } catch (error) {
+      console.error("Error fetching movie:", error);
     }
-
-    const data = await response.json();
-
-    console.log("Array", data);
-
-    if (data.Response === "True" && data.Search) {
-      // Shuffle the array to randomize the order
-      const shuffledMovies = data.Search.sort(() => Math.random() - 0.5);
-
-      // Take only the first 5 movies
-      const randomMovies = shuffledMovies.slice(0, 5);
-
-      return randomMovies;
-    } else {
-      throw new Error(`Error: `);
-    }
-  } catch (error) {
-    console.error("Error fetching movie data:", error);
-    throw error;
   }
+
+  return movieList;
 };
 
 // ...
-const getRandomText = (): string => {
-  const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const randomIndex = Math.floor(Math.random() * alphabets.length);
-  return alphabets[randomIndex];
+const getRandomTitle = (): string => {
+  const movies = [
+    "The Shawshank Redemption",
+    "The Godfather",
+    "The Dark Knight",
+    "Pulp Fiction",
+    "Star war 9",
+    "Schindler's List",
+    "Fight Club",
+    "Forrest Gump",
+    "Inception",
+    "The Matrix",
+    "The Silence of the Lambs",
+    "The Green Mile",
+    "The Godfather: Part II",
+    "The Shawshank Redemption",
+    "The Dark Knight Rises",
+    "Maze Runner",
+    "The Matrix Reloaded",
+    "The Matrix Revolutions",
+    "The Avengers",
+    "Titanic",
+  ];
+  const randomIndex = Math.floor(Math.random() * movies.length);
+  return movies[randomIndex];
 };
