@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactNode } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface SidebarItemProps {
   icon: ReactNode;
@@ -24,11 +24,19 @@ interface SidebarListProps {
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ icon, text, path }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isActive = path ? location.pathname === path : false;
   const textColor = isActive && "text-white font-semibold";
 
+  const handleClick = () => {
+    if (path) {
+      navigate(path);
+    }
+  };
+
   return (
     <div
+      onClick={handleClick}
       className={`flex items-center hover:cursor-pointer hover:text-primary ${textColor}`}
     >
       {icon}
@@ -85,17 +93,19 @@ const sidebarItemsC: SidebarItemProps[] = [
 
 export const SidebarMenu: React.FC = () => {
   return (
-    <div className="h-full bg-[#21201E] flex flex-col items-center">
-      <div className="text-white text-2xl font-semibold my-6">
-        <FontAwesomeIcon icon={faMugHot} />
-        <span className="px-4">WATCH</span>
-      </div>
+    <div className="flex flex-col flex-1 items-center z-10 bg-[#21201e]">
+      <div className="flex-grow">
+        <div className="text-white text-2xl font-semibold my-6">
+          <FontAwesomeIcon icon={faMugHot} />
+          <span className="px-4">WATCH</span>
+        </div>
 
-      {/* Additional content goes here */}
-      <div className="flex flex-col gap-[6em] mt-6">
-        <SidebarList items={sidebarItemsA} />
-        <SidebarList items={sidebarItemsB} />
-        <SidebarList items={sidebarItemsC} />
+        {/* Additional content goes here */}
+        <div className="flex flex-col gap-[6em] mt-6">
+          <SidebarList items={sidebarItemsA} />
+          <SidebarList items={sidebarItemsB} />
+          <SidebarList items={sidebarItemsC} />
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import { LoginPage } from "./pages/LoginPage";
 import { HomePage } from "./pages/HomePage";
 import { authState } from "./utils/state/authState";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { FavouritePage } from "./pages/FavouritePage";
+import { CategoryPage } from "./pages/CategoryPage";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +12,12 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/say",
-    element: <div>Hi</div>,
+    path: "/favourites",
+    element: <FavouritePage />,
+  },
+  {
+    path: "/category/:category",
+    element: <CategoryPage />,
   },
 ]);
 

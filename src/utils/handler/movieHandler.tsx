@@ -1,22 +1,44 @@
 import MovieProps from "../types/MovieProps";
 
+const cachedMovie: MovieProps[] = [];
+
 // const apiKey2 = "92de39b3";
 const apiKey = "26b7e602";
-export const fetchByName = async (name: string): Promise<MovieProps> => {
+
+export const fetchByName = async (
+  name: string,
+  category?: string
+): Promise<MovieProps> => {
+  if (!name) {
+    throw new Error("Invalid IMDb ID");
+  }
   try {
+    let data: any = cachedMovie.find((m) => m.Title === name);
+
+    if (data) {
+      return data;
+    }
+
     const response = await fetch(
-      `http://www.omdbapi.com/?t=${encodeURIComponent(name)}&apikey=${apiKey}`
+      `http://www.omdbapi.com/?t=${encodeURIComponent(
+        name
+      )}&type=${category}&apikey=${apiKey}`
     );
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status} - ${response.statusText}`);
     }
 
-    const data = await response.json();
+    data = await response.json();
 
-    if (data.Response === "True") {
+    if (data && data.Response === "True") {
+      if (cachedMovie.some((m) => m.Title !== data.Title)) {
+        cachedMovie.push(data);
+      }
+
       return data; // Return the movie data
     } else {
+      console.log(name);
       throw new Error(`Error: ${data.Error}`);
     }
   } catch (error) {
@@ -24,18 +46,18 @@ export const fetchByName = async (name: string): Promise<MovieProps> => {
     throw error; // Rethrow the error to be handled by the calling code
   }
 };
-// ...
 
-export const fetchRandomMovies = async (
-  amount: number
+export const fetchRandomMovie = async (
+  amount: number,
+  category: string
 ): Promise<MovieProps[]> => {
   const movieList: MovieProps[] = [];
 
   for (let i = 0; i < amount; i++) {
     try {
-      let movie = await fetchByName(getRandomTitle());
+      let movie = await fetchByName(getRandomMediaTitle(category), category);
       while (movieList.some((m) => m.Title === movie.Title)) {
-        movie = await fetchByName(getRandomTitle());
+        movie = await fetchByName(getRandomMediaTitle(category), category);
       }
 
       movieList.push(movie);
@@ -46,15 +68,13 @@ export const fetchRandomMovies = async (
 
   return movieList;
 };
-
-// ...
-const getRandomTitle = (): string => {
+const getRandomMediaTitle = (type: string): string => {
   const movies = [
     "The Shawshank Redemption",
     "The Godfather",
     "The Dark Knight",
     "Pulp Fiction",
-    "Star war 9",
+    "Star Wars",
     "Schindler's List",
     "Fight Club",
     "Forrest Gump",
@@ -71,6 +91,40 @@ const getRandomTitle = (): string => {
     "The Avengers",
     "Titanic",
   ];
-  const randomIndex = Math.floor(Math.random() * movies.length);
-  return movies[randomIndex];
+
+  const tvSeries = [
+    "Breaking Bad",
+    "Stranger Things",
+    "Game of Thrones",
+    "The Crown",
+    "The Mandalorian",
+    "The Witcher",
+    "Friends",
+    "The Simpsons",
+    "Black Mirror",
+    "Westworld",
+    "Fargo",
+    "The Office",
+    "The Walking Dead",
+    "Sherlock",
+    "Narcos",
+    "Money Heist",
+    "The Big Bang Theory",
+    "Peaky Blinders",
+    "Vikings",
+    "Dark",
+  ];
+
+  const mediaArray = type === "movie" ? movies : tvSeries;
+
+  if (mediaArray.length === 0) {
+    return "Inter"; // No titles available
+  }
+
+  const randomIndex = Math.floor(Math.random() * mediaArray.length);
+  return mediaArray[randomIndex];
 };
+
+// Example usage:
+const randomMovieTitle = getRandomMediaTitle("movie");
+console.log(randomMovieTitle);

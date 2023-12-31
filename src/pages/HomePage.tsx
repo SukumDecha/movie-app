@@ -1,19 +1,28 @@
-import { NavbarMenu } from "../components/header/NavbarMenu";
+import NavbarMenu from "../components/header/NavbarMenu";
 import { SidebarMenu } from "../components/header/SidebarMenu";
 import { HeroSection } from "../components/HeroSection";
 import { MovieSection } from "../components/movie/MovieSection";
 
 export const HomePage = () => {
-  console.log(location);
   return (
-    <div className="flex w-full h-[100vh] border-red-500">
-      <div className="w-1/5">
+    <div className="flex h-screen">
+      <div className="w-1/5 flex flex-col h-screen">
         <SidebarMenu />
       </div>
-      <div className="container flex flex-col w-4/5">
+      <div
+        className="flex-1 flex flex-col overflow-hidden"
+        style={{
+          backgroundImage: 'url("/public/assets/pages/home/HeroSection.jpeg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <NavbarMenu />
-        <HeroSection />
-        <MovieSection title="Trending..." />
+        <div className="flex-1 overflow-y-auto">
+          <HeroSection />
+          <MovieSection title="Recommend..." className="bg-[#343330]" />
+        </div>
       </div>
     </div>
   );

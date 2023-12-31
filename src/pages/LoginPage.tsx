@@ -13,7 +13,7 @@ export const LoginPage = () => {
           <div className="text-white text-lg font-semibold">
             <FontAwesomeIcon icon={faMugHot} /> WATCH
           </div>
-
+          
           <div className="text-white text-md font-light mt-2">
             Enjoy the newest movies
           </div>
