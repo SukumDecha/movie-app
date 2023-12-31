@@ -21,7 +21,16 @@ export const HomePage = () => {
         <NavbarMenu />
         <div className="flex-1 overflow-y-auto">
           <HeroSection />
-          <MovieSection title="Recommend..." className="bg-[#343330]" />
+          <MovieSection
+            title="Recommend Movie..."
+            type="movie"
+            className="bg-[#343330]"
+          />
+          <MovieSection
+            title="Recommend Series..."
+            type="series"
+            className="bg-[#343330]"
+          />
         </div>
       </div>
     </div>

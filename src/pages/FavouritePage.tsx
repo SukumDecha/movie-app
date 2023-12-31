@@ -19,17 +19,27 @@ export const FavouritePage = () => {
 
     fetchMovie();
   }, []);
+
   return (
     <div className="flex h-screen">
       <div className="w-1/5 flex flex-col h-screen">
         <SidebarMenu />
       </div>
-      <div className="flex-1 flex flex-col items-center overflow-hidden bg-[#343330]">
+      <div className="flex-1 flex flex-col overflow-hidden bg-[#343330]">
         <div>
           <NavbarMenu />
         </div>
         <div className="flex-1 overflow-y-auto p-6 relative z-0">
-          <MovieSection title="Favourite..." favouriteMovies={movies} />
+          <MovieSection
+            title="Favourite - Movie"
+            type="movie"
+            favouriteMovies={movies.filter((m) => m.Type === "movie")}
+          />
+          <MovieSection
+            title="Favourite - Series"
+            type="series"
+            favouriteMovies={movies.filter((m) => m.Type === "series")}
+          />
         </div>
       </div>
     </div>

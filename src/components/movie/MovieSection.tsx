@@ -6,12 +6,14 @@ import { fetchRandomMovie } from "../../utils/handler/movieHandler";
 
 interface MovieSectionProps {
   title: string;
+  type: string;
   className?: string;
   favouriteMovies?: MovieProps[];
 }
 
 export const MovieSection: React.FC<MovieSectionProps> = ({
   title,
+  type,
   favouriteMovies,
   className,
 }) => {
@@ -21,7 +23,7 @@ export const MovieSection: React.FC<MovieSectionProps> = ({
     const fetchData = async () => {
       try {
         if (!favouriteMovies) {
-          const randomMovies = await fetchRandomMovie(9, "movie");
+          const randomMovies = await fetchRandomMovie(9, type);
           setMovies(randomMovies);
         } else {
           setMovies(favouriteMovies);
@@ -34,21 +36,9 @@ export const MovieSection: React.FC<MovieSectionProps> = ({
     fetchData();
   }, [favouriteMovies]);
 
-  if (favouriteMovies) {
-    return (
-      <div className={twMerge("bg-[#343330]", className)}>
-        <span className="text-white text-xl md:text-2xl">{title}</span>
-
-        <div className="flex flex-wrap gap-5 pt-5">
-          {movies &&
-            movies.map((movie, index) => <MovieItem key={index} {...movie} />)}
-        </div>
-      </div>
-    );
-  }
   return (
-    <div className="p-4 h-[100vh] bg-[#343330] overflow-hidden">
-      <span className="text-white text-xl md:text-2xl">{title}</span>
+    <div className={twMerge("bg-[#343330] overflow-hidden p-4 ", className)}>
+      <span className="text-white text-xl underline md:text-2xl">{title}</span>
 
       <div className="flex overflow-x-auto overflow-y-hidden gap-5 pt-5 scrollbar-hide">
         {movies &&
