@@ -21,7 +21,10 @@ export const HomePage = () => {
   );
 };
 
-const PageContent = ({ isSearching }) => (
+interface PageContentProps {
+  isSearching: boolean;
+}
+const PageContent = ({ isSearching }: PageContentProps) => (
   <div
     className="flex-1 overflow-y-auto"
     style={{

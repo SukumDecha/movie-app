@@ -58,7 +58,7 @@ export const MovieItem = (movie: MovieProps) => {
         <div className="h-1/4 bg-white p-3 rounded-b-xl">
           <div className="text-sm font-semibold mb-2">{movie.Title}</div>
           <span className="text-sm font-normal">
-            {movie.Year} | {movie.imdbRating} | {movie.Type}
+            {movie.Year} | {movie.Type}
           </span>
           <br />
         </div>
