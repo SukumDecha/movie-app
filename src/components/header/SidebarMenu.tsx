@@ -37,18 +37,18 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ icon, text, path }) => {
   return (
     <div
       onClick={handleClick}
-      className={`flex items-center hover:cursor-pointer hover:text-primary ${textColor}`}
+      className={`flex items-center hover:cursor-pointer hover:text-primary ${textColor} text-sm md:text-base `}
     >
       {icon}
-      <span className="px-4">{text}</span>
+      <span className="px-3 md:px-4">{text}</span>
     </div>
   );
 };
 
 const SidebarList: React.FC<SidebarListProps> = ({ items }) => (
-  <ul className="flex flex-col gap-6 text-secondary text-normal font-thin">
+  <ul className="flex flex-col gap-6 items-start pl-3 lg:pl-0 text-secondary font-thin">
     {items.map((item, index) => (
-      <li key={index} className="items-start">
+      <li key={index}>
         <SidebarItem {...item} />
       </li>
     ))}
@@ -65,7 +65,6 @@ const sidebarItemsA: SidebarItemProps[] = [
   {
     icon: <FontAwesomeIcon icon={faArrowTrendUp} />,
     text: "Trending",
-    path: "trending",
   },
   {
     icon: <FontAwesomeIcon icon={faFilm} />,
@@ -77,12 +76,10 @@ const sidebarItemsB: SidebarItemProps[] = [
   {
     icon: <FontAwesomeIcon icon={faPeopleGroup} />,
     text: "Community",
-    path: "/community",
   },
   {
     icon: <FontAwesomeIcon icon={faComment} />,
     text: "Social",
-    path: "/social",
   },
 ];
 
@@ -95,9 +92,9 @@ export const SidebarMenu: React.FC = () => {
   return (
     <div className="flex flex-col flex-1 items-center z-10 bg-[#21201e]">
       <div className="flex-grow">
-        <div className="text-white text-2xl font-semibold my-6">
+        <div className="text-white text-xl px-2 lg:text-2xl lg:px-0 font-semibold my-6">
           <FontAwesomeIcon icon={faMugHot} />
-          <span className="px-4">WATCH</span>
+          <span className="px-2 lg:px-4">WATCH</span>
         </div>
 
         {/* Additional content goes here */}

@@ -28,7 +28,7 @@
 
     backdrop-filter: blur(10px);
 
-    @apply hover:bg-lightpurple hover;
+    @apply hover:bg-lightpurple lg:hover;
   }
 }
 

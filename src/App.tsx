@@ -5,11 +5,20 @@ import { authState } from "./utils/state/authState";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { FavouritePage } from "./pages/FavouritePage";
 import { CategoryPage } from "./pages/CategoryPage";
+import { DetailPage } from "./pages/DetailPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
+  },
+  {
+    path: "/category",
+    element: <HomePage />,
+  },
+  {
+    path: "/movie",
+    element: <DetailPage />,
   },
   {
     path: "/favourites",
