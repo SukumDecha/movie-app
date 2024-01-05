@@ -1,18 +1,76 @@
-# Movie Web App
-
 ## Overview
 
-This is a movie web app developed as a part of my frontend skill practice. The application is built using React, Tailwind CSS, Recoil for state management, and Framer Motion for animations.
+This is a movie web app developed as a part of my frontend skill practice. The application is built using React, Tailwind CSS, Recoil for state management, and [OMDb API](https://www.omdbapi.com/) to fetch movies.
 
 ## Features
 
-- **Movie Listings:** Browse a curated collection of movies.
+- **Search by name:** Browse a movie filterd by name
 - **Favorites:** Add movies to your favorites list.
-- **Trending:** Explore trending movies.
 
-## Technologies Used
+## Tech / Library Used
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+- Lodash
+- React Router
+- Recoil
+- Font Awesome
 
-- **React:** A JavaScript library for building user interfaces.
-- **Tailwind CSS:** A utility-first CSS framework for styling.
-- **Recoil:** A state management library for React applications.
-- **Framer Motion:** A library for creating smooth animations in React.
+## Getting Started
+
+### Prerequisites
+
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/SukumDecha/movie-app.git
+cd movie-app
+```
+
+### Install Dependencies
+
+Run the following command to install project dependencies:
+
+```bash
+pnpm install
+```
+
+### Run the Development Server
+
+Use the following command to start the development server:
+
+```bash
+pnpm dev
+```
+
+Visit http://localhost:3000 in your browser to view the app.
+
+
+### Build the Project
+
+If you want to build the project for production, you can use:
+
+```bash
+pnpm build
+```
+
+The production-ready build will be available in the dist directory.
+
+### Linting
+
+To lint the TypeScript and React files, you can use:
+
+```bash
+pnpm lint
+```
+
+### Preview the Production Build
+
+If you want to preview the production build locally, you can use:
+
+```bash
+pnpm preview
+```
